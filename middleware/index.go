@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"../global"
 	"fmt"
 	"net/http"
 )
@@ -38,7 +37,7 @@ func NoAuthRouteWrapper(arg func(w http.ResponseWriter, r *http.Request)) func(w
 
 		// Block option requests from being processed.
 		if r.Method == "OPTIONS" {
-			_, _ = fmt.Fprintf(w, global.SuccessMessageFormat, "")
+			_, _ = fmt.Fprintf(w, SuccessMessageFormat, "")
 			return
 		}
 
@@ -64,7 +63,7 @@ func AuthRouteWrapper(arg func(w http.ResponseWriter, r *http.Request, userId st
 
 		// Block option requests from being processed.
 		if r.Method == "OPTIONS" {
-			_, _ = fmt.Fprintf(w, global.SuccessMessageFormat, "")
+			_, _ = fmt.Fprintf(w, SuccessMessageFormat, "")
 			return
 		}
 
