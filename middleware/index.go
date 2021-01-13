@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"../global"
 	"fmt"
 	"net/http"
 )
