@@ -81,4 +81,3 @@ func AuthRouteWrapper(arg func(w http.ResponseWriter, r *http.Request, userId st
 		arg(w, r, userId)
 	}
 }
-
