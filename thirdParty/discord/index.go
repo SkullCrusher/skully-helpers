@@ -29,7 +29,7 @@ func SendWebhook(webhook string, message string)(string, bool){
 
 		// If we have big enough generate the value.
 		if len(v) > 1 {
-			formattedMessage = fmt.Sprintf(`{"content":"%v", "embed": %v }`, v[0], v[1])
+			formattedMessage = fmt.Sprintf(`{"content":"%v", "embeds": %v }`, v[0], v[1])
 		}
 	}
 
