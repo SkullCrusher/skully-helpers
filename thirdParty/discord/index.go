@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 /*
@@ -19,6 +20,18 @@ import (
 func SendWebhook(webhook string, message string)(string, bool){
 
 	formattedMessage := fmt.Sprintf(`{"content":"%v"}`, message)
+
+	// If it contains @@@ we want to override and split it into embed and content.
+	if strings.Contains(message, "@!@!@") {
+
+		// Split the message up into two chunks.
+		v := strings.Split(message, "@!@!@")
+
+		// If we have big enough generate the value.
+		if len(v) > 1 {
+			formattedMessage = fmt.Sprintf(`{"content":"%v", "embed": %v }`, v[0], v[1])
+		}
+	}
 
 	// Create a new request.
 	req, err := http.NewRequest("POST", webhook, bytes.NewBuffer([]byte(formattedMessage)))
